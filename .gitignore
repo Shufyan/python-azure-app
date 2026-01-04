@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env*
+*.egg-info/
+
+# VS Code
+.vscode/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# OS
+.DS_Store
+
+# Container registry images
+app/*.tar
+
+# General
+*.bak
+*.swp
+*.tmp
+
+# Ignore local secrets
+secrets.*
+
+# Ignore build outputs
+build/
+dist/
+
+# Ignore notebooks
+*.ipynb_checkpoints/
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+
+# Ignore test outputs
+*.pytest_cache/
