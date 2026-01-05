@@ -24,6 +24,16 @@ resource "azurerm_service_plan" "plan" {
   sku_name            = "F1"
 }
 
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_key_vault" "kv" {
+  name                        = "${var.app_name}-${var.env}-kv"
+  location                    = var.location
+  resource_group_name         = azurerm_resource_group.rg.name
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  sku_name                    = "standard"
+}
+
 resource "azurerm_linux_web_app" "app" {
   name                = "${var.app_name}-${var.env}"
   resource_group_name = azurerm_resource_group.rg.name
@@ -44,5 +54,6 @@ resource "azurerm_linux_web_app" "app" {
 
   app_settings = {
     ENVIRONMENT = var.env
+    SECRET_VALUE = "@Microsoft.KeyVault(SecretUri=https://fastapiapp-dev-kv.vault.azure.net/secrets/API-SECRET/)"
   }
 }
