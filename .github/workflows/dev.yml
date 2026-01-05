@@ -26,6 +26,9 @@ jobs:
           docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/app:latest
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
       - name: Terraform Apply
         run: |
           cd terraform
