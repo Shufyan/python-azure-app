@@ -42,10 +42,11 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.4.7
 
       - name: Terraform Apply
         run: |
           cd terraform
           terraform init
-          terraform import azurerm_resource_group.rg /subscriptions/f6597657-b2c1-4437-9df6-631a8bbbe917/resourceGroups/fastapiapp-dev-rg
           terraform apply -auto-approve -var="env=dev" -var="location=westus2" -var="app_name=fastapiapp"
