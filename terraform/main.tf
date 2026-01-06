@@ -53,7 +53,7 @@ resource "azurerm_linux_web_app" "app" {
 
   site_config {
     application_stack {
-      docker_image_name   = "${azurerm_container_registry.acr.login_server}/app:latest"
+      docker_image_name   = "app:latest"
       docker_registry_url = "https://${azurerm_container_registry.acr.login_server}"
     }
 
