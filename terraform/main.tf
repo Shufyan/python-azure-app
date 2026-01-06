@@ -65,5 +65,8 @@ resource "azurerm_linux_web_app" "app" {
   app_settings = {
     ENVIRONMENT = var.env
     SECRET_VALUE = "@Microsoft.KeyVault(SecretUri=https://fastapiapp-dev-kv.vault.azure.net/secrets/API-SECRET/)"
+    DOCKER_REGISTRY_SERVER_URL      = "https://${azurerm_container_registry.acr.login_server}"
+    DOCKER_REGISTRY_SERVER_USERNAME = azurerm_container_registry.acr.admin_username
+    DOCKER_REGISTRY_SERVER_PASSWORD = azurerm_container_registry.acr.admin_password
   }
 }
